@@ -7,6 +7,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 
+import com.geekbrains.my3rxmoxytrainig.model.GlideLoader;
+
 import moxy.MvpAppCompatActivity;
 import moxy.presenter.InjectPresenter;
 
@@ -15,6 +17,7 @@ public class MainActivity extends MvpAppCompatActivity implements MainView {
     //Переменные
     Button btn;
     ImageView imageView;
+    GlideLoader glideLoader;
 
 
     @InjectPresenter
@@ -24,15 +27,12 @@ public class MainActivity extends MvpAppCompatActivity implements MainView {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         init();
+        glideLoader = new GlideLoader(this);
     }
 
     @Override
-    public void setImage(Boolean b) {
-        if (b) {
-            imageView.setImageResource(R.drawable.ic_launcher_background);
-        } else {
-            imageView.setImageResource(R.drawable.ic_launcher_foreground);
-        }
+    public void setImage(String url) {
+        glideLoader.loadImage(url, imageView);
     }
 
     public void onClick(View view) {

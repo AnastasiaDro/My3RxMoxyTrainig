@@ -6,5 +6,5 @@ import moxy.viewstate.strategy.StateStrategyType;
 
 public interface MainView extends MvpView {
     @StateStrategyType(value = SkipStrategy.class)
-    void setImage(Boolean aBoolean);
+    void setImage(String url);
 }

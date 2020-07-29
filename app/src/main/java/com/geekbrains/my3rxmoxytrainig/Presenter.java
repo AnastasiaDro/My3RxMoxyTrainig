@@ -2,6 +2,9 @@ package com.geekbrains.my3rxmoxytrainig;
 
 import android.util.Log;
 
+import com.geekbrains.my3rxmoxytrainig.model.Retrofit.Model;
+import com.geekbrains.my3rxmoxytrainig.model.gson.User;
+
 import io.reactivex.Observable;
 import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -23,8 +26,8 @@ public class Presenter extends MvpPresenter <MainView> {
     }
 
     public void changeImage(){
-       Observable<Boolean> observable = model.changeCurrentImg();
-       observable.observeOn(AndroidSchedulers.mainThread()).subscribe(new Observer<Boolean>() {
+       Observable<User> observable = model.changeCurrentImg();
+       observable.observeOn(AndroidSchedulers.mainThread()).subscribe(new Observer<User>() {
            @Override
            public void onSubscribe(Disposable d) {
                Log.d(TAG, "onSubscribe");
@@ -32,9 +35,9 @@ public class Presenter extends MvpPresenter <MainView> {
            }
 
            @Override
-           public void onNext(Boolean aBoolean) {
-               Log.d(TAG, " onNext boolean = " + aBoolean.toString());
-                    Presenter.this.getViewState().setImage(aBoolean);
+           public void onNext(User user) {
+               Log.d(TAG, " onNext boolean = " + user.login.toString());
+                    Presenter.this.getViewState().setImage(user.avatar);
            }
 
            @Override
