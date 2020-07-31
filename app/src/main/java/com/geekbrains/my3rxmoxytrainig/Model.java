@@ -1,14 +1,10 @@
-package com.geekbrains.my3rxmoxytrainig.model.Retrofit;
+package com.geekbrains.my3rxmoxytrainig;
 
-import android.util.Log;
-
-import com.geekbrains.my3rxmoxytrainig.model.gson.User;
+import com.geekbrains.my3rxmoxytrainig.model.Retrofit.RetrofitService;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
 import io.reactivex.Observable;
-import io.reactivex.ObservableEmitter;
-import io.reactivex.ObservableOnSubscribe;
 import io.reactivex.schedulers.Schedulers;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
@@ -24,6 +20,9 @@ public class Model {
 
     private boolean flag;
 
+
+
+
     public Model() {
         this.userMe = "AnastasiaDro";
         this.userJake = "jakeWharton";
@@ -32,11 +31,6 @@ public class Model {
 
     public Observable<User> changeCurrentImg() {
 
-        if (currentUser == userJake) {
-            currentUser = userMe;
-        } else {
-            currentUser = userJake;
-        }
         Gson gson = new GsonBuilder()
                 .excludeFieldsWithoutExposeAnnotation()
                 .create();
@@ -51,6 +45,22 @@ public class Model {
                 .create(RetrofitService.class);
 
         return api.getUser(currentUser).subscribeOn(Schedulers.io());
+    }
+
+    public String getCurrentUser() {
+        return currentUser;
+    }
+
+    public void setCurrentUser(String currentUser) {
+        this.currentUser = currentUser;
+    }
+
+    public String getUserMe() {
+        return userMe;
+    }
+
+    public String getUserJake() {
+        return userJake;
     }
 }
 

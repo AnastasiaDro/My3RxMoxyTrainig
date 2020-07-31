@@ -1,4 +1,4 @@
-package com.geekbrains.my3rxmoxytrainig.model.gson;
+package com.geekbrains.my3rxmoxytrainig;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
